@@ -1,0 +1,75 @@
+#include "dg645.h"
+
+dg645::dg645(QWidget *parent) : tcpSocket(new QTcpSocket(this))
+{ 
+    //start();
+}
+
+int dg645::init()
+{
+    in.setDevice(tcpSocket);
+    connect(tcpSocket, &QIODevice::readyRead, this, &dg645::read);
+    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),this, &dg645::displayError);
+    tcpSocket->connectToHost(QHostAddress("192.168.0.15"),5025);
+    if (tcpSocket->waitForConnected(100)){
+        dgSay("trying to write");
+        //tcpSocket->write(QByteArray("*idn?\n"));
+        tcpSocket->write(QByteArray("dlay 2,0,50e-9\n"));
+        tcpSocket->write(QByteArray("dlay 3,2,50e-9\n"));
+        tcpSocket->write(QByteArray("*opc?\n"));
+    }
+    //tcpSocket->disconnectFromHost();
+    //tcpSocket->abort();
+    //emit dgSay(QString::number(10e-9));
+    /* get identification string
+     * dg_write("*idn?\n");
+     * load default settings
+     * dg_write("*rst\n");
+     * Set internal triggering
+     * dg_write("tsrc 0\n");
+     * Set trigger rate to 10hz
+     * dg_write("trat 10\n");
+     * Make sure all commands have executed before closing connection
+     * dg_write("*opc?\n");
+     */
+
+    return 0;
+}
+void dg645::displayError(QAbstractSocket::SocketError socketError)
+{
+  switch (socketError) {
+  case QAbstractSocket::RemoteHostClosedError:
+      break;
+  case QAbstractSocket::HostNotFoundError:
+      dgSay("The host was not found. Please check the host name and port settings.");
+      break;
+  case QAbstractSocket::ConnectionRefusedError:
+      dgSay("The connection was refused by the peer");
+      break;
+  default:
+      dgSay("The following error occurred: " + tcpSocket->errorString());
+  }
+}
+void dg645::read()
+{
+/*    dgSay("ReadyRead triggered");
+    in.startTransaction();
+
+    QString readBuffa;
+    in >> readBuffa;
+*/
+    /*if (!in.commitTransaction())
+        return;*/
+    QByteArray readBuffa = tcpSocket->readAll();
+    dgSay("dg: " + readBuffa);
+}
+void dg645::chOn(int chNum){
+    QString write("lamp " + QString::number(chNum) + ",5\n");   // set amplitude to five
+    tcpSocket->write(write.toUtf8());                           // i dont know any better way
+    this->chStatus[chNum] = TRUE;
+}
+void dg645::chOff(int chNum){
+    QString write("lamp " + QString::number(chNum) + ",0\n");   // set amplitude to zero
+    tcpSocket->write(write.toUtf8());                           // i dont know any better way
+    this->chStatus[chNum] = TRUE;
+}

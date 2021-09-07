@@ -1,0 +1,95 @@
+#include "dg645.h"
+
+dg645::dg645(QWidget *parent) : tcpSocket(new QTcpSocket(this))
+{ 
+    //start();
+}
+void dg645::init(bool uiStatus)
+{
+    dgSay("Initialization connection...");
+    connect(tcpSocket, &QIODevice::readyRead, this, &dg645::read);
+    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),this, &dg645::displayError);
+    tcpSocket->connectToHost(QHostAddress("192.168.0.15"),5025);
+    if (tcpSocket->waitForConnected(100)){
+        dgSay("Connected");
+        //setDelay(0,0);
+        //chOn(0);
+        //tcpSocket->write(QByteArray("lerr?\n"));
+    }
+    //tcpSocket->disconnectFromHost();
+    //tcpSocket->abort();
+    /* get identification string
+     * dg_write("*idn?\n");
+     * load default settings
+     * dg_write("*rst\n");
+     * Set internal triggering
+     * dg_write("tsrc 0\n");
+     * Set trigger rate to 10hz
+     * dg_write("trat 10\n");
+     * Make sure all commands have executed before closing connection
+     * dg_write("*opc?\n");
+     */
+}
+void dg645::displayError(QAbstractSocket::SocketError socketError)
+{
+  switch (socketError) {
+  case QAbstractSocket::RemoteHostClosedError:
+      break;
+  case QAbstractSocket::HostNotFoundError:
+      dgSay("The host was not found. Please check the host name and port settings.");
+      break;
+  case QAbstractSocket::ConnectionRefusedError:
+      dgSay("The connection was refused by the peer");
+      break;
+  default:
+      dgSay("The following error occurred: " + tcpSocket->errorString());
+  }
+}
+void dg645::read()
+{
+/*    dgSay("ReadyRead triggered");
+    in.startTransaction();
+
+    QString readBuffa;
+    in >> readBuffa;
+*/
+    /*if (!in.commitTransaction())
+        return;*/
+    QByteArray readBuffa = tcpSocket->readAll();
+    dgSay("dg: " + readBuffa);
+}
+void dg645::chOn(int chNum){
+    QString write("lamp " + QString::number(chNum + 1) + ",5\n");   // set amplitude to five. dont forget that 0 output is T0,T1. So we need to +1
+    if (uiStatus)                                                   // when start button is active.
+        tcpSocket->write(write.toUtf8());                           // i dont know any better way
+    this->chStatus[chNum] = TRUE;
+}
+void dg645::chOff(int chNum){
+    QString write("lamp " + QString::number(chNum + 1) + ",0.5\n");   // set amplitude to zero.
+    if (uiStatus)
+        tcpSocket->write(write.toUtf8());                           //
+    this->chStatus[chNum] = FALSE;
+}
+void dg645::setDelay(int chNum, double chDelay){
+    QString write("dlay " + QString::number(chNum + 2) + ",0," + QString::number(chDelay/1000000) + "\n");  // set delay for chNum channel in seconds. don't forget that 0 channel is T0. A is 2 channel. so we need to +2.
+    if (uiStatus)
+        tcpSocket->write(write.toUtf8());
+    this->chDelay[chNum] = chDelay;
+}
+void dg645::setFrequency(int frq){
+    if (uiStatus){
+        QString write("trat " + QString::number(frq) + "\n");
+        tcpSocket->write(write.toUtf8());
+    }
+    this->frequency = frq;
+}
+void dg645::stop(){                                                 // calling when stop button is pushed. and before exiting the program
+    for (int i = 0; i < 4; i++){    // yea. better using chCount instead of 4. but dg always have 4 outputs whatever what.
+        QString write("lamp " + QString::number(i + 1) + ",0.5\n");   // set amplitude to zero.
+        tcpSocket->write(write.toUtf8());
+    }
+    dgSay("All channels turned off");
+    uiStatus = FALSE;                                               // GUI should not operate dg from this moment.
+    //tcpSocket->disconnectFromHost();
+    //dgSay("Disconnected");
+}

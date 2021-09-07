@@ -1,0 +1,49 @@
+#include "synchronizer.h"
+#include "ui_synchronizer.h"
+#include "QFile"
+#include "QTextStream"
+
+Synchronizer::Synchronizer(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Synchronizer)
+{
+    ui->setupUi(this);
+    //loadTextFile();
+}
+
+Synchronizer::~Synchronizer()
+{
+    //add 
+    delete ui;
+}
+
+void Synchronizer::Say(const QString &text) // for debug info shown in textbox
+{
+    ui->textEdit->append(text);
+}
+void Synchronizer::loadTextFile()
+{
+    QFile inputFile(":/input.txt");
+    inputFile.open(QIODevice::ReadOnly);
+
+    QTextStream in(&inputFile);
+    QString line = in.readAll();
+    inputFile.close();
+
+    ui->textEdit->setPlainText(line);
+    ui->textEdit->append("Well, this shit");
+    ui->textEdit->append("Should work");
+    this->Say("and even this");
+    QTextCursor cursor = ui->textEdit->textCursor();
+    cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor, 1);
+}
+
+void Synchronizer::on_okButton_clicked()
+{
+    // dgwrite channel B. related to channel A.
+}
+
+void Synchronizer::on_pushButton_clicked()
+{
+    // dgwrite disconnect. comments also
+}

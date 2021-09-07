@@ -1,0 +1,37 @@
+#ifndef DG645_H
+#define DG645_H
+
+#include <QObject>
+#include <winsock2.h>
+#include <stdio.h>
+
+class dg645 : public QObject
+{
+    Q_OBJECT
+public:
+    dg645();                                    // constructor
+    void init_tcpip(void);                      // open socket
+    int dg_connect(unsigned long ip);           // connect to dg
+    int dg_read(char *buffer, unsigned num);    // read answer from dg
+    int init();
+
+signals:
+    void dgSay(QString text);       // for debug info to show in GUI
+
+public slots:
+    int dg_write(const char *str);  // write a command to dg
+    int dg_close(void);             // close connection with dg
+    
+
+private:
+    SOCKET sDG645;                  /* DG645 tcpip socket */
+    unsigned dg_timeout = 3000;     /* Read timeout in milliseconds */
+    char buffer[1024];              // read buffah?
+    QString ip;                     // dg ip
+    bool chStatus[8];               // channels status. 0 - off, 1 - on
+    double chDelay[8];              // channels delays in seconds.
+    int frequency = 0;              // dg internal trigger frequency
+
+};
+
+#endif // DG645_H

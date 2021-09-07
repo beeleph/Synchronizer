@@ -1,0 +1,30 @@
+#ifndef DG645_H
+#define DG645_H
+
+#include <QObject>
+//#include "synchronizer.h"
+#include <winsock2.h>
+#include <stdio.h>
+
+class dg645 : public QObject
+{
+public:
+    dg645();
+    void init_tcpip(void);
+    int dg_connect(unsigned long ip);
+    int dg_close(void);
+    int dg_write(const char *str);
+    int dg_read(char *buffer, unsigned num);
+    int start();
+
+signals:
+    void dgSay(QString text);
+    
+private:
+//    Synchronizer *sync;
+    SOCKET sDG645;               /* DG645 tcpip socket */
+    unsigned dg_timeout = 3000;  /* Read timeout in milliseconds */
+    char buffer[1024];
+};
+
+#endif // DG645_H

@@ -132,10 +132,6 @@ void Synchronizer::settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDel
 
 void Synchronizer::settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
 {
-    /*ui->AB2EnableButton->setChecked(chStatus[0]);
-    ui->CD2EnableButton->setChecked(chStatus[1]);
-    ui->EF2EnableButton->setChecked(chStatus[2]);
-    ui->GH2EnableButton->setChecked(chStatus[3]);*/
     ui->A3LatencyDoubleSpinBox->setValue(chDelay[0]);
     ui->C3LatencyDoubleSpinBox->setValue(chDelay[2]);
     ui->E3LatencyDoubleSpinBox->setValue(chDelay[4]);
@@ -148,10 +144,6 @@ void Synchronizer::settingsToUiThree(QVector<bool> chStatus, QVector<double> chD
 
 void Synchronizer::settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
 {
-    /*ui->AB2EnableButton->setChecked(chStatus[0]);
-    ui->CD2EnableButton->setChecked(chStatus[1]);
-    ui->EF2EnableButton->setChecked(chStatus[2]);
-    ui->GH2EnableButton->setChecked(chStatus[3]);*/
     ui->A4LatencyDoubleSpinBox->setValue(chDelay[0]);
     ui->C4LatencyDoubleSpinBox->setValue(chDelay[2]);
     ui->E4LatencyDoubleSpinBox->setValue(chDelay[4]);

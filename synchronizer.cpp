@@ -66,19 +66,9 @@ void Synchronizer::on_A1LatencyDoubleSpinBox_valueChanged(double arg1)
     emit delayChangedFirst(0, arg1);
 }
 
-void Synchronizer::on_B1LatencyDoubleSpinBox_valueChanged(double arg1)
-{
-    emit delayChangedFirst(1, arg1);
-}
-
 void Synchronizer::on_C1LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedFirst(2, arg1);
-}
-
-void Synchronizer::on_D1LatencyDoubleSpinBox_valueChanged(double arg1)
-{
-    emit delayChangedFirst(3, arg1);
 }
 
 void Synchronizer::on_E1LatencyDoubleSpinBox_valueChanged(double arg1)
@@ -86,19 +76,9 @@ void Synchronizer::on_E1LatencyDoubleSpinBox_valueChanged(double arg1)
     emit delayChangedFirst(4, arg1);
 }
 
-void Synchronizer::on_F1LatencyDoubleSpinBox_valueChanged(double arg1)
-{
-    emit delayChangedFirst(5, arg1);
-}
-
 void Synchronizer::on_G1LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedFirst(6, arg1);
-}
-
-void Synchronizer::on_H1LatencyDoubleSpinBox_valueChanged(double arg1)
-{
-    emit delayChangedFirst(7, arg1);
 }
 
 void Synchronizer::on_exitButton_clicked()
@@ -125,21 +105,13 @@ void Synchronizer::settingsToUiOne(QVector<bool> chStatus, QVector<double> chDel
     ui->EF1EnableButton->setChecked(chStatus[2]);
     ui->GH1EnableButton->setChecked(chStatus[3]);*/    // this feature is disabled
     ui->A1LatencyDoubleSpinBox->setValue(chDelay[0]);
-    ui->B1LatencyDoubleSpinBox->setValue(chDelay[1]);
     ui->C1LatencyDoubleSpinBox->setValue(chDelay[2]);
-    ui->D1LatencyDoubleSpinBox->setValue(chDelay[3]);
     ui->E1LatencyDoubleSpinBox->setValue(chDelay[4]);
-    ui->F1LatencyDoubleSpinBox->setValue(chDelay[5]);
     ui->G1LatencyDoubleSpinBox->setValue(chDelay[6]);
-    ui->H1LatencyDoubleSpinBox->setValue(chDelay[7]);
     ui->A1LineEdit->setText(V_names[0]);
-    ui->B1LineEdit->setText(V_names[1]);
     ui->C1LineEdit->setText(V_names[2]);
-    ui->D1LineEdit->setText(V_names[3]);
     ui->E1LineEdit->setText(V_names[4]);
-    ui->F1LineEdit->setText(V_names[5]);
     ui->G1LineEdit->setText(V_names[6]);
-    ui->H1LineEdit->setText(V_names[7]);
 }
 
 void Synchronizer::settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
@@ -158,7 +130,37 @@ void Synchronizer::settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDel
     ui->G2LineEdit->setText(V_names[6]);
 }
 
+void Synchronizer::settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
+{
+    /*ui->AB2EnableButton->setChecked(chStatus[0]);
+    ui->CD2EnableButton->setChecked(chStatus[1]);
+    ui->EF2EnableButton->setChecked(chStatus[2]);
+    ui->GH2EnableButton->setChecked(chStatus[3]);*/
+    ui->A3LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->C3LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->E3LatencyDoubleSpinBox->setValue(chDelay[4]);
+    ui->G3LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->A3LineEdit->setText(V_names[0]);
+    ui->C3LineEdit->setText(V_names[2]);
+    ui->E3LineEdit->setText(V_names[4]);
+    ui->G3LineEdit->setText(V_names[6]);
+}
 
+void Synchronizer::settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
+{
+    /*ui->AB2EnableButton->setChecked(chStatus[0]);
+    ui->CD2EnableButton->setChecked(chStatus[1]);
+    ui->EF2EnableButton->setChecked(chStatus[2]);
+    ui->GH2EnableButton->setChecked(chStatus[3]);*/
+    ui->A4LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->C4LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->E4LatencyDoubleSpinBox->setValue(chDelay[4]);
+    //ui->G2LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->A4LineEdit->setText(V_names[0]);
+    ui->C4LineEdit->setText(V_names[2]);
+    ui->E4LineEdit->setText(V_names[4]);
+    //ui->G2LineEdit->setText(V_names[6]);
+}
 void Synchronizer::on_comboBox_currentTextChanged(const QString &arg1)
 {
     emit FRQchanged(arg1.toInt());
@@ -203,4 +205,39 @@ void Synchronizer::on_EF2EnableButton_toggled(bool checked)
 void Synchronizer::on_GH2EnableButton_toggled(bool checked)
 {
     emit enableToggledSecond(3, checked);
+}
+
+void Synchronizer::on_A3LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedThird(0, arg1);
+}
+
+void Synchronizer::on_C3LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedThird(2, arg1);
+}
+
+void Synchronizer::on_E3LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedThird(4, arg1);
+}
+
+void Synchronizer::on_G3LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedThird(6, arg1);
+}
+
+void Synchronizer::on_A4LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedFourth(0, arg1);
+}
+
+void Synchronizer::on_C4LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedFourth(2, arg1);
+}
+
+void Synchronizer::on_E4LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedFourth(4, arg1);
 }

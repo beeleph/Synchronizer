@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &firstDg, SLOT(startStop(bool)));
     QObject::connect(&w, SIGNAL(FRQchanged(int)), &firstDg, SLOT(setFrequency(int)));
     //QObject::connect(&w, SIGNAL(enableToggledFirst(int, bool)), &firstDg, SLOT(chOnOff(int, bool)));
-    QObject::connect(&w, SIGNAL(delayChangedFirst(int,double)), &firstDg, SLOT(setDelay(int,double)));
+    QObject::connect(&w, SIGNAL(delayChangedFirst(int,double)), &firstDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &firstDg, SLOT(writeSettings()));
     firstDg.init(1);
     // second
@@ -37,6 +37,24 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(delayChangedSecond(int,double)), &secondDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &secondDg, SLOT(writeSettings()));
     secondDg.init(1);
+    // third
+    dg645 thirdDg("third");
+    QObject::connect(&thirdDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
+    QObject::connect(&thirdDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QString>)), &w, SLOT(settingsToUiThree(QVector<bool>, QVector<double>, QVector<QString>)));
+    QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &thirdDg, SLOT(startStop(bool)));
+    QObject::connect(&w, SIGNAL(FRQchanged(int)), &thirdDg, SLOT(setFrequency(int)));
+    QObject::connect(&w, SIGNAL(delayChangedThird(int,double)), &thirdDg, SLOT(setDelayDuration(int,double)));
+    QObject::connect(&w, SIGNAL(saveButtonClicked()), &thirdDg, SLOT(writeSettings()));
+    thirdDg.init(1);
+    // fourth
+    dg645 fourthDg("fourth");
+    QObject::connect(&fourthDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
+    QObject::connect(&fourthDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QString>)), &w, SLOT(settingsToUiFour(QVector<bool>, QVector<double>, QVector<QString>)));
+    QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &fourthDg, SLOT(startStop(bool)));
+    QObject::connect(&w, SIGNAL(FRQchanged(int)), &fourthDg, SLOT(setFrequency(int)));
+    QObject::connect(&w, SIGNAL(delayChangedFourth(int,double)), &fourthDg, SLOT(setDelayDuration(int,double)));
+    QObject::connect(&w, SIGNAL(saveButtonClicked()), &fourthDg, SLOT(writeSettings()));
+    fourthDg.init(1);
     return a.exec();
 }
 
@@ -44,8 +62,13 @@ int main(int argc, char *argv[])
  *
  * Запуск останов?
  * при выходе не выключает синхронизатор. не успевает.
- *
- * вопросы наверх:
- *
- * перекидывать настройки нужно используя qvector. думаю приводить в процессе к нему.
+ * Чтобы реализовать вывод ширины на ГУЙ надо вычислять разность задержек соседних каналов
+ */
+
+/* to commit
+ * Deprecated *error* removed
+ * +third and fourth Dg's
+ * +DelayChanged
+ * +two more dg's to GUI
+ * !build is not tested though
  */

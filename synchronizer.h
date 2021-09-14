@@ -25,6 +25,8 @@ signals:
     void enableToggledSecond(int chNum, bool checked);
     void delayChangedFirst(int ch,double delayMs);
     void delayChangedSecond(int ch,double delayMs);
+    void delayChangedThird(int ch,double delayMs);
+    void delayChangedFourth(int ch,double delayMs);
     void saveButtonClicked();
 
 private slots:
@@ -34,6 +36,10 @@ private slots:
     void settingsToUiOne(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
 
     void settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+
+    void settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+
+    void settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
 
     void on_startButton_toggled(bool checked);
 
@@ -85,6 +91,20 @@ private slots:
     void on_GH2EnableButton_toggled(bool checked);
 
     void timeToStop();
+
+    void on_A3LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_C3LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_E3LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_G3LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_A4LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_C4LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_E4LatencyDoubleSpinBox_valueChanged(double arg1);
 
 private:
     Ui::Synchronizer *ui;

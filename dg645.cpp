@@ -28,13 +28,14 @@ void dg645::init(bool needaStatus)
     emit settingsToUi(V_chStatus, V_chDelay, this->V_names);   // passing settings to UI
     dgSay("Initialization connection...");
     connect(tcpSocket, &QIODevice::readyRead, this, &dg645::read);
-    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),this, &dg645::displayError);
+    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),this, &dg645::displayError);    //smth changed here
     tcpSocket->connectToHost(QHostAddress(this->ip),5025);
     if (tcpSocket->waitForConnected(100)){
         dgSay(this->name + ": connected");
         //setDelay(0,0);
         //chOn(0);
         //tcpSocket->write(QByteArray("lerr?\n"));
+        //QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
     }
     statusTimer = new QTimer(this);
     connect(statusTimer,  SIGNAL(timeout()), this, SLOT(askStatus()));
@@ -59,7 +60,7 @@ void dg645::readSettings(){
     this->settings->beginGroup(this->name);                  //needed for differ the dg's.
     this->ip = this->settings->value("ip").toString();
     for (int i = 0; i < 4; ++i){
-        this->chStatus[i] = this->settings->value("Output_" + QString::number(i) + "_status", FALSE).toBool();
+        this->chStatus[i] = this->settings->value("Output_" + QString::number(i) + "_status", false).toBool();
         this->outputDuration[i] = this->settings->value("Output_" + QString::number(i) + "_duration", 0).toDouble();
     }
     for (int i = 0; i < 8; ++i){
@@ -119,14 +120,14 @@ void dg645::chOnOff(int chNum, bool status){
             QString write("lamp " + QString::number(chNum + 1) + ",5\n");   // set amplitude to five. dont forget that 0 output is T0,T1. So we need to +1                                                  // when start button is active.
             tcpSocket->write(write.toUtf8());                           // i dont know any better way
         }
-        this->chStatus[chNum] = TRUE;
+        this->chStatus[chNum] = true;
     }
     else    {
         if (uiStatus){
             QString write("lamp " + QString::number(chNum + 1) + ",0.5\n");   // set amplitude to zero.
             tcpSocket->write(write.toUtf8());                           //
         }
-        this->chStatus[chNum] = FALSE;
+        this->chStatus[chNum] = true;
     }
 }
 void dg645::setDelay(int chNum, double chDelay){
@@ -154,7 +155,7 @@ void dg645::setFrequency(int frq){
 }
 void dg645::startStop(bool checked){                                 // calling when startStop button is pushed
     if (checked){
-        uiStatus = TRUE;                                            // GUI should operate dg from this moment
+        uiStatus = true;                                            // GUI should operate dg from this moment
         setFrequency(this->frequency);                              // frequency >>
         for (int i = 0; i < 8; i++){
             setDelay(i, this->chDelay[i]);                          // delays >>
@@ -165,7 +166,7 @@ void dg645::startStop(bool checked){                                 // calling 
         dgSay("Started");
     }
     else {
-        uiStatus = FALSE;                                           // GUI should not operate dg from this moment.
+        uiStatus = false;                                           // GUI should not operate dg from this moment.
         for (int i = 0; i < 4; i++){    // yea. better using chCount instead of 4. but dg always have 4 outputs whatever what.
             QString write("lamp " + QString::number(i + 1) + ",0.5\n");   // set amplitude to zero.
             tcpSocket->write(write.toUtf8());

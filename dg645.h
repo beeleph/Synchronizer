@@ -41,7 +41,7 @@ private:
     QTimer *statusTimer;
     QTcpSocket *tcpSocket = nullptr;
     bool chStatus[4];               // channels status. 0 - off, 1 - on. changing status using LAMP (switching amplitude to zero or 5V), applicable only to pair of channels. AB, CD, EF, GH
-    bool uiStatus = FALSE;          // ui status - start button. when UI enabled delays and onOff buttons immediately works with DG. otherwise only "memorize" their settings.
+    bool uiStatus = false;          // ui status - start button. when UI enabled delays and onOff buttons immediately works with DG. otherwise only "memorize" their settings.
     double chDelay[8];              // channels delays in Ms microseconds.
     double outputDuration[4];           // duration of outputs. for using outputs with fixed ending. i0 - ch1 - outAB, i1 - ch3 - outCD, i2 - ch5 - outEF, i3- ch7 - outGH
     int frequency = 0;              // dg internal trigger frequency in HZ

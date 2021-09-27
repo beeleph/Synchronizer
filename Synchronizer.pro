@@ -46,3 +46,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     synchronizer.qrc
+
+DISTFILES += \
+    SyncIco.ico
+

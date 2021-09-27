@@ -53,19 +53,11 @@ private slots:
 
     void on_GH1EnableButton_toggled(bool checked);
 
-    void on_B1LatencyDoubleSpinBox_valueChanged(double arg1);
-
     void on_C1LatencyDoubleSpinBox_valueChanged(double arg1);
-
-    void on_D1LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_E1LatencyDoubleSpinBox_valueChanged(double arg1);
 
-    void on_F1LatencyDoubleSpinBox_valueChanged(double arg1);
-
     void on_G1LatencyDoubleSpinBox_valueChanged(double arg1);
-
-    void on_H1LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_exitButton_clicked();
 
@@ -82,14 +74,6 @@ private slots:
 
     void on_G2LatencyDoubleSpinBox_valueChanged(double arg1);
 
-    void on_AB2EnableButton_toggled(bool checked);
-
-    void on_CD2EnableButton_toggled(bool checked);
-
-    void on_EF2EnableButton_toggled(bool checked);
-
-    void on_GH2EnableButton_toggled(bool checked);
-
     void timeToStop();
 
     void on_A3LatencyDoubleSpinBox_valueChanged(double arg1);
@@ -105,6 +89,8 @@ private slots:
     void on_C4LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_E4LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_G4LatencyDoubleSpinBox_valueChanged(double arg1);
 
 private:
     Ui::Synchronizer *ui;

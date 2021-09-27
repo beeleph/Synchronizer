@@ -19,22 +19,6 @@ void Synchronizer::Say(QString text)
 {
     ui->textEdit->append(text);
 }
-void Synchronizer::loadTextFile()
-{
-    QFile inputFile(":/input.txt");
-    inputFile.open(QIODevice::ReadOnly);
-
-    QTextStream in(&inputFile);
-    QString line = in.readAll();
-    inputFile.close();
-
-    ui->textEdit->setPlainText(line);
-    ui->textEdit->append("Well, this shit");
-    ui->textEdit->append("Should work");
-    this->Say("and even this");
-    QTextCursor cursor = ui->textEdit->textCursor();
-    cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor, 1);
-}
 
 void Synchronizer::on_startButton_toggled(bool checked)
 {
@@ -100,14 +84,14 @@ void Synchronizer::on_saveButton_clicked()
 }
 
 void Synchronizer::settingsToUiOne(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names){
-    /*ui->AB1EnableButton->setChecked(chStatus[0]);
-    ui->CD1EnableButton->setChecked(chStatus[1]);
-    ui->EF1EnableButton->setChecked(chStatus[2]);
-    ui->GH1EnableButton->setChecked(chStatus[3]);*/    // this feature is disabled
     ui->A1LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->A1DurationSpinBox->setValue(chDelay[1]*1000 - chDelay[0]*1000);
     ui->C1LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->C1DurationSpinBox->setValue(chDelay[3]*1000 - chDelay[2]*1000);
     ui->E1LatencyDoubleSpinBox->setValue(chDelay[4]);
+    ui->E1DurationSpinBox->setValue(chDelay[5]*1000 - chDelay[4]*1000);
     ui->G1LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->G1DurationSpinBox->setValue(chDelay[7]*1000 - chDelay[6]*1000);
     ui->A1LineEdit->setText(V_names[0]);
     ui->C1LineEdit->setText(V_names[2]);
     ui->E1LineEdit->setText(V_names[4]);
@@ -116,14 +100,14 @@ void Synchronizer::settingsToUiOne(QVector<bool> chStatus, QVector<double> chDel
 
 void Synchronizer::settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
 {
-    /*ui->AB2EnableButton->setChecked(chStatus[0]);
-    ui->CD2EnableButton->setChecked(chStatus[1]);
-    ui->EF2EnableButton->setChecked(chStatus[2]);
-    ui->GH2EnableButton->setChecked(chStatus[3]);*/
     ui->A2LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->A2DurationSpinBox->setValue(chDelay[1]*1000 - chDelay[0]*1000);
     ui->C2LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->C2DurationSpinBox->setValue(chDelay[3]*1000 - chDelay[2]*1000);
     ui->E2LatencyDoubleSpinBox->setValue(chDelay[4]);
+    ui->E2DurationSpinBox->setValue(chDelay[5]*1000 - chDelay[4]*1000);
     ui->G2LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->G2DurationSpinBox->setValue(chDelay[7]*1000 - chDelay[6]*1000);
     ui->A2LineEdit->setText(V_names[0]);
     ui->C2LineEdit->setText(V_names[2]);
     ui->E2LineEdit->setText(V_names[4]);
@@ -133,9 +117,13 @@ void Synchronizer::settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDel
 void Synchronizer::settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
 {
     ui->A3LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->A3DurationSpinBox->setValue(chDelay[1]*1000 - chDelay[0]*1000);
     ui->C3LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->C3DurationSpinBox->setValue(chDelay[3]*1000 - chDelay[2]*1000);
     ui->E3LatencyDoubleSpinBox->setValue(chDelay[4]);
+    ui->E3DurationSpinBox->setValue(chDelay[5]*1000 - chDelay[4]*1000);
     ui->G3LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->G3DurationSpinBox->setValue(chDelay[7]*1000 - chDelay[6]*1000);
     ui->A3LineEdit->setText(V_names[0]);
     ui->C3LineEdit->setText(V_names[2]);
     ui->E3LineEdit->setText(V_names[4]);
@@ -145,19 +133,22 @@ void Synchronizer::settingsToUiThree(QVector<bool> chStatus, QVector<double> chD
 void Synchronizer::settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names)
 {
     ui->A4LatencyDoubleSpinBox->setValue(chDelay[0]);
+    ui->A4DurationSpinBox->setValue(chDelay[1]*1000 - chDelay[0]*1000);
     ui->C4LatencyDoubleSpinBox->setValue(chDelay[2]);
+    ui->C4DurationSpinBox->setValue(chDelay[3]*1000 - chDelay[2]*1000);
     ui->E4LatencyDoubleSpinBox->setValue(chDelay[4]);
-    //ui->G2LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->E4DurationSpinBox->setValue(chDelay[5]*1000 - chDelay[4]*1000);
+    ui->G4LatencyDoubleSpinBox->setValue(chDelay[6]);
+    ui->G4DurationSpinBox->setValue(chDelay[7]*1000 - chDelay[6]*1000);
     ui->A4LineEdit->setText(V_names[0]);
     ui->C4LineEdit->setText(V_names[2]);
     ui->E4LineEdit->setText(V_names[4]);
-    //ui->G2LineEdit->setText(V_names[6]);
+    ui->G4LineEdit->setText(V_names[6]);
 }
 void Synchronizer::on_comboBox_currentTextChanged(const QString &arg1)
 {
     emit FRQchanged(arg1.toInt());
 }
-
 
 void Synchronizer::on_A2LatencyDoubleSpinBox_valueChanged(double arg1)
 {
@@ -177,26 +168,6 @@ void Synchronizer::on_E2LatencyDoubleSpinBox_valueChanged(double arg1)
 void Synchronizer::on_G2LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedSecond(6, arg1);
-}
-
-void Synchronizer::on_AB2EnableButton_toggled(bool checked)
-{
-    emit enableToggledSecond(0, checked);
-}
-
-void Synchronizer::on_CD2EnableButton_toggled(bool checked)
-{
-    emit enableToggledSecond(1, checked);
-}
-
-void Synchronizer::on_EF2EnableButton_toggled(bool checked)
-{
-    emit enableToggledSecond(2, checked);
-}
-
-void Synchronizer::on_GH2EnableButton_toggled(bool checked)
-{
-    emit enableToggledSecond(3, checked);
 }
 
 void Synchronizer::on_A3LatencyDoubleSpinBox_valueChanged(double arg1)
@@ -232,4 +203,9 @@ void Synchronizer::on_C4LatencyDoubleSpinBox_valueChanged(double arg1)
 void Synchronizer::on_E4LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedFourth(4, arg1);
+}
+
+void Synchronizer::on_G4LatencyDoubleSpinBox_valueChanged(double arg1)
+{
+    emit delayChangedFourth(6, arg1);
 }

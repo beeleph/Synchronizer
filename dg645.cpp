@@ -1,4 +1,5 @@
 #include "dg645.h"
+#include "QTextCodec"
 
 dg645::dg645(QString nameIn, QWidget *parent) : tcpSocket(new QTcpSocket(this))
 { 
@@ -32,31 +33,17 @@ void dg645::init(bool needaStatus)
     tcpSocket->connectToHost(QHostAddress(this->ip),5025);
     if (tcpSocket->waitForConnected(100)){
         dgSay(this->name + ": connected");
-        //setDelay(0,0);
-        //chOn(0);
-        //tcpSocket->write(QByteArray("lerr?\n"));
-        //QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
     }
     statusTimer = new QTimer(this);
-    connect(statusTimer,  SIGNAL(timeout()), this, SLOT(askStatus()));
+    //connect(statusTimer,  SIGNAL(timeout()), this, SLOT(askStatus()));
     if (needaStatus){
         statusTimer->start(1000);
     }
-    //tcpSocket->disconnectFromHost();
-    //tcpSocket->abort();
-    /* get identification string
-     * dg_write("*idn?\n");
-     * load default settings
-     * dg_write("*rst\n");
-     * Set internal triggering
-     * dg_write("tsrc 0\n");
-     * Set trigger rate to 10hz
-     * dg_write("trat 10\n");
-     * Make sure all commands have executed before closing connection
-     * dg_write("*opc?\n");
-     */
+
 }
 void dg645::readSettings(){
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("Windows-1251"));
+    //QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     this->settings->beginGroup(this->name);                  //needed for differ the dg's.
     this->ip = this->settings->value("ip").toString();
     for (int i = 0; i < 4; ++i){
@@ -103,14 +90,6 @@ void dg645::askStatus(){
 }
 void dg645::read()
 {
-/*    dgSay("ReadyRead triggered");
-    in.startTransaction();
-
-    QString readBuffa;
-    in >> readBuffa;
-*/
-    /*if (!in.commitTransaction())
-        return;*/
     QByteArray readBuffa = tcpSocket->readAll();
     dgSay(this->name + ": " + readBuffa);
 }

@@ -15,7 +15,6 @@ void dg645::init(bool needaStatus)
             this->chDelay[i*2+1] = this->chDelay[i*2] + this->outputDuration[i]; // mmmmm yeaaaaaaah))) you should get it.
         }
     }
-    dgSay("1 channel is - " + QString::number(this->chDelay[1]));
     // yea. that's gonna be creepy. buuut. i can't either use QVector instead of default C arrays for some reason
     // and pass arrays (signal/slot) instead of QVector. sooo......
     QVector<bool> V_chStatus(4);
@@ -106,7 +105,7 @@ void dg645::chOnOff(int chNum, bool status){
             QString write("lamp " + QString::number(chNum + 1) + ",0.5\n");   // set amplitude to zero.
             tcpSocket->write(write.toUtf8());                           //
         }
-        this->chStatus[chNum] = true;
+        this->chStatus[chNum] = false;
     }
 }
 void dg645::setDelay(int chNum, double chDelay){
@@ -124,6 +123,7 @@ void dg645::setDelayDuration(int chNum, double chDelay){
         tcpSocket->write(write2.toUtf8());
     }
     this->chDelay[chNum] = chDelay;
+    this->chDelay[chNum+1] = chDelay + this->outputDuration[chNum/2];
 }
 void dg645::setFrequency(int frq){
     if (uiStatus){

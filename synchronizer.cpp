@@ -25,26 +25,6 @@ void Synchronizer::on_startButton_toggled(bool checked)
     emit startButtonToggled(checked);
 }
 
-void Synchronizer::on_AB1EnableButton_toggled(bool checked)
-{
-    emit enableToggledFirst(0, checked);
-}
-
-void Synchronizer::on_CD1EnableButton_toggled(bool checked)
-{
-    emit enableToggledFirst(1, checked);
-}
-
-void Synchronizer::on_EF1EnableButton_toggled(bool checked)
-{
-    emit enableToggledFirst(2, checked);
-}
-
-void Synchronizer::on_GH1EnableButton_toggled(bool checked)
-{
-    emit enableToggledFirst(3, checked);
-}
-
 void Synchronizer::on_A1LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedFirst(0, arg1);

@@ -45,14 +45,6 @@ private slots:
 
     void on_A1LatencyDoubleSpinBox_valueChanged(double arg1);
 
-    void on_AB1EnableButton_toggled(bool checked);
-
-    void on_CD1EnableButton_toggled(bool checked);
-
-    void on_EF1EnableButton_toggled(bool checked);
-
-    void on_GH1EnableButton_toggled(bool checked);
-
     void on_C1LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_E1LatencyDoubleSpinBox_valueChanged(double arg1);

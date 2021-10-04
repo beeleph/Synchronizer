@@ -142,11 +142,13 @@ void dg645::startStop(bool checked){                                 // calling 
         for (int i = 0; i < 4; i++){
             chOnOff(i, this->chStatus[i]);                          // just in case
         }
+        QString write("lamp " + QString::number(0) + ",5\n");       // activating To channel. seem's like we gonna use it too.
+        tcpSocket->write(write.toUtf8());
         dgSay("Started");
     }
     else {
         uiStatus = false;                                           // GUI should not operate dg from this moment.
-        for (int i = 0; i < 4; i++){    // yea. better using chCount instead of 4. but dg always have 4 outputs whatever what.
+        for (int i = -1; i < 4; i++){    // yea. better using chCount instead of 4. but dg always have 4 outputs whatever what. we using -1 for To channel, seem's like we gonna use it too.
             QString write("lamp " + QString::number(i + 1) + ",0.5\n");   // set amplitude to zero.
             tcpSocket->write(write.toUtf8());
         }

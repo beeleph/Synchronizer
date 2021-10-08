@@ -75,7 +75,7 @@
     <rect>
      <x>560</x>
      <y>80</y>
-     <width>91</width>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
@@ -85,15 +85,15 @@
     </font>
    </property>
    <property name="text">
-    <string>Ширина(нс)</string>
+    <string>Ширина</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>450</x>
      <y>80</y>
-     <width>121</width>
+     <width>101</width>
      <height>21</height>
     </rect>
    </property>
@@ -103,7 +103,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Задержка (мкс)</string>
+    <string>Задержка</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_11">
@@ -154,6 +154,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="E1LineEdit">
    <property name="geometry">
@@ -163,6 +168,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="E1LatencyDoubleSpinBox">
@@ -234,6 +244,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLabel" name="label_15">
    <property name="geometry">
@@ -259,7 +274,7 @@
      <x>180</x>
      <y>10</y>
      <width>261</width>
-     <height>51</height>
+     <height>54</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -404,7 +419,7 @@
      <x>10</x>
      <y>12</y>
      <width>79</width>
-     <height>51</height>
+     <height>54</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -482,6 +497,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLabel" name="label_18">
    <property name="geometry">
@@ -549,6 +569,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="A2LineEdit">
    <property name="geometry">
@@ -558,6 +583,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="E2LatencyDoubleSpinBox">
@@ -610,6 +640,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="label_23">
@@ -666,7 +701,7 @@
     <string>Сохранить</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="A1DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="A1DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -692,14 +727,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
-   <property name="maximum">
-    <number>10000</number>
+   <property name="decimals">
+    <number>3</number>
    </property>
-   <property name="value">
-    <number>10000</number>
+   <property name="maximum">
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="C1DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="C1DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -725,14 +760,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
-   <property name="maximum">
-    <number>10000</number>
+   <property name="decimals">
+    <number>3</number>
    </property>
-   <property name="value">
-    <number>100</number>
+   <property name="maximum">
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="E1DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="E1DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -758,14 +793,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
-   <property name="maximum">
-    <number>10000</number>
+   <property name="decimals">
+    <number>3</number>
    </property>
-   <property name="value">
-    <number>100</number>
+   <property name="maximum">
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="G1DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="G1DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -791,14 +826,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
-   <property name="maximum">
-    <number>10000</number>
+   <property name="decimals">
+    <number>3</number>
    </property>
-   <property name="value">
-    <number>100</number>
+   <property name="maximum">
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="A2DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="A2DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -824,11 +859,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="C2DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="C2DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -854,11 +892,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="E2DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="E2DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -884,11 +925,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="G2DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="G2DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -914,8 +958,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLabel" name="label_17">
@@ -973,6 +1020,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="A3LineEdit">
    <property name="geometry">
@@ -982,6 +1034,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="C3LatencyDoubleSpinBox">
@@ -1044,7 +1101,7 @@
     <string>GH</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="A3DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="A3DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1070,8 +1127,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLabel" name="label_20">
@@ -1136,7 +1196,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QSpinBox" name="G3DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="G3DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1162,8 +1222,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLabel" name="label_12">
@@ -1184,7 +1247,7 @@
     <string>AB</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="C3DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="C3DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1210,11 +1273,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="E3DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="E3DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1240,8 +1306,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLineEdit" name="E3LineEdit">
@@ -1252,6 +1321,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="A3LatencyDoubleSpinBox">
@@ -1302,6 +1376,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="C4LineEdit">
    <property name="geometry">
@@ -1312,6 +1391,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="A4LineEdit">
    <property name="geometry">
@@ -1321,6 +1405,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="C4LatencyDoubleSpinBox">
@@ -1344,7 +1433,7 @@
     <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="A4DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="A4DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1370,8 +1459,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLabel" name="label_27">
@@ -1454,7 +1546,7 @@
     <string>AB</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="C4DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="C4DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1480,11 +1572,14 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
-  <widget class="QSpinBox" name="E4DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="E4DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1510,8 +1605,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QLineEdit" name="E4LineEdit">
@@ -1522,6 +1620,11 @@
      <width>391</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="A4LatencyDoubleSpinBox">
@@ -1593,8 +1696,13 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
-  <widget class="QSpinBox" name="G4DurationSpinBox">
+  <widget class="QDoubleSpinBox" name="G4DurationSpinBox">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1620,8 +1728,11 @@
    <property name="buttonSymbols">
     <enum>QAbstractSpinBox::NoButtons</enum>
    </property>
+   <property name="decimals">
+    <number>3</number>
+   </property>
    <property name="maximum">
-    <number>10000</number>
+    <double>9999.989999999999782</double>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="G4LatencyDoubleSpinBox">

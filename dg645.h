@@ -16,10 +16,11 @@ class dg645 : public QObject
     Q_OBJECT
 public:
     explicit dg645(QString nameIn, QWidget *parent = nullptr);                                    // constructor
+    QSettings *settings;//{QSettings::IniFormat, QSettings::UserScope,"JINR", "Synchronizer"};
 
 signals:
     void dgSay(QString text);       // for debug info to show in GUI
-    void settingsToUi(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names); // for passing readed settings to GUI controls
+    void settingsToUi(QVector<bool> chStatus, QVector<double> chDelay, QVector<QByteArray> V_names); // for passing readed settings to GUI controls
 
 public slots:
     void init(bool needaStatus);
@@ -45,8 +46,8 @@ private:
     double chDelay[8];              // channels delays in Ms microseconds.
     double outputDuration[4];           // duration of outputs. for using outputs with fixed ending. i0 - ch1 - outAB, i1 - ch3 - outCD, i2 - ch5 - outEF, i3- ch7 - outGH
     int frequency = 0;              // dg internal trigger frequency in HZ
-    QSettings *settings;//{QSettings::IniFormat, QSettings::UserScope,"JINR", "Synchronizer"};
-    QVector<QString> V_names{8};
+
+    QVector<QByteArray> V_names{8};
     // yea, basically better to uistatus, frq and setting to be static. but it's more complicated and less convinient for me.
 
 

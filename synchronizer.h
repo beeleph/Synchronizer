@@ -33,13 +33,13 @@ private slots:
     // this actually needed for debug info to show. and to protect the ui itself
     void Say(QString text);
 
-    void settingsToUiOne(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+    void settingsToUiOne(QVector<bool> chStatus, QVector<double> chDelay, QVector<QByteArray> V_names);
 
-    void settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+    void settingsToUiTwo(QVector<bool> chStatus, QVector<double> chDelay, QVector<QByteArray> V_names);
 
-    void settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+    void settingsToUiThree(QVector<bool> chStatus, QVector<double> chDelay, QVector<QByteArray> V_names);
 
-    void settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QString> V_names);
+    void settingsToUiFour(QVector<bool> chStatus, QVector<double> chDelay, QVector<QByteArray> V_names);
 
     void on_startButton_toggled(bool checked);
 

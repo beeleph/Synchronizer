@@ -23,7 +23,7 @@ void dg645::init(bool needaStatus)
         V_chDelay[i] = chDelay[i];
     }
     emit settingsToUi(V_chStatus, V_chDelay, V_names);   // passing settings to UI
-    dgSay("Initialization connection...");
+    //dgSay("Initialization connection...");
     connect(tcpSocket, &QIODevice::readyRead, this, &dg645::read);
     connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),this, &dg645::displayError);    //smth changed here
     tcpSocket->connectToHost(QHostAddress(ip),5025);
@@ -48,7 +48,7 @@ void dg645::readSettings(){
         V_names[i] = settings->value("Name" + QString::number(i)).toByteArray();
     }
     settings->endGroup();
-    dgSay(name + ": settings readed");
+    //dgSay(name + ": settings readed");
 }
 void dg645::writeSettings(){
     settings->beginGroup(name);
@@ -97,7 +97,7 @@ void dg645::chOnOff(int chNum, bool status){
     else    {
         if (uiStatus){
             QString write("lamp " + QString::number(chNum + 1) + ",0.5\n");   // set amplitude to zero.
-            tcpSocket->write(write.toUtf8());                           //
+            tcpSocket->write(write.toUtf8());
         }
         chStatus[chNum] = false;
     }
@@ -150,4 +150,14 @@ void dg645::startStop(bool checked){                                 // calling 
     }
     //tcpSocket->disconnectFromHost();
     //dgSay("Disconnected");
+}
+void dg645::triggerSwitch(bool internal){
+    if ( internal ){
+        QString write("TSRC 0\n");
+        tcpSocket->write(write.toUtf8());
+    }
+    else{
+        QString write("TSRC 1\n");
+        tcpSocket->write(write.toUtf8());
+    }
 }

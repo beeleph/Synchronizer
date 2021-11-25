@@ -34,6 +34,7 @@ public slots:
     void setDelayDuration(int chNum, double chDelay);   // sets the output instead of channel with fixed duration readed from ini
     void setFrequency(int frq);                 // sets frequency? in hz!
     void startStop(bool checked);               // when start button is pressed. we write all da settings including frq, delays, on/off to dg, turn off all da channels when stop button is pressed
+    void triggerSwitch(bool internal);          // for extra safety with on/off
 
 
 private:

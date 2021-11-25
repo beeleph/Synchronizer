@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(FRQchanged(int)), &firstDg, SLOT(setFrequency(int)));
     QObject::connect(&w, SIGNAL(delayChangedFirst(int,double)), &firstDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &firstDg, SLOT(writeSettings()));
+    QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &firstDg, SLOT(triggerSwitch(bool)));
     firstDg.init(0);
     // second
     dg645 secondDg("second");

@@ -55,9 +55,6 @@ private slots:
 
     void on_saveButton_clicked();
 
-
-    void on_comboBox_currentTextChanged(const QString &arg1);
-
     void on_A2LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_C2LatencyDoubleSpinBox_valueChanged(double arg1);
@@ -83,6 +80,8 @@ private slots:
     void on_E4LatencyDoubleSpinBox_valueChanged(double arg1);
 
     void on_G4LatencyDoubleSpinBox_valueChanged(double arg1);
+
+    void on_spinBox_valueChanged(int arg1);
 
 private:
     Ui::Synchronizer *ui;

@@ -124,10 +124,6 @@ void Synchronizer::settingsToUiFour(QVector<bool> chStatus, QVector<double> chDe
     ui->E4LineEdit->setText(V_names[4]);
     ui->G4LineEdit->setText(V_names[6]);
 }
-void Synchronizer::on_comboBox_currentTextChanged(const QString &arg1)
-{
-    emit FRQchanged(arg1.toInt());
-}
 
 void Synchronizer::on_A2LatencyDoubleSpinBox_valueChanged(double arg1)
 {
@@ -187,4 +183,9 @@ void Synchronizer::on_E4LatencyDoubleSpinBox_valueChanged(double arg1)
 void Synchronizer::on_G4LatencyDoubleSpinBox_valueChanged(double arg1)
 {
     emit delayChangedFourth(6, arg1);
+}
+
+void Synchronizer::on_spinBox_valueChanged(int arg1)
+{
+    emit FRQchanged(arg1);
 }

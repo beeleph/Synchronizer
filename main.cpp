@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     QObject::connect(&secondDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
     QObject::connect(&secondDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QByteArray>)), &w, SLOT(settingsToUiTwo(QVector<bool>, QVector<double>, QVector<QByteArray>)));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &secondDg, SLOT(startStop(bool)));
-    QObject::connect(&w, SIGNAL(FRQchanged(int)), &secondDg, SLOT(setFrequency(int)));
+    //QObject::connect(&w, SIGNAL(FRQchanged(int)), &secondDg, SLOT(setFrequency(int)));
     QObject::connect(&w, SIGNAL(delayChangedSecond(int,double)), &secondDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &secondDg, SLOT(writeSettings()));
     secondDg.init(0);
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     QObject::connect(&thirdDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
     QObject::connect(&thirdDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QByteArray>)), &w, SLOT(settingsToUiThree(QVector<bool>, QVector<double>, QVector<QByteArray>)));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &thirdDg, SLOT(startStop(bool)));
-    QObject::connect(&w, SIGNAL(FRQchanged(int)), &thirdDg, SLOT(setFrequency(int)));
+    //QObject::connect(&w, SIGNAL(FRQchanged(int)), &thirdDg, SLOT(setFrequency(int)));
     QObject::connect(&w, SIGNAL(delayChangedThird(int,double)), &thirdDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &thirdDg, SLOT(writeSettings()));
     thirdDg.init(0);
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     QObject::connect(&fourthDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
     QObject::connect(&fourthDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QByteArray>)), &w, SLOT(settingsToUiFour(QVector<bool>, QVector<double>, QVector<QByteArray>)));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &fourthDg, SLOT(startStop(bool)));
-    QObject::connect(&w, SIGNAL(FRQchanged(int)), &fourthDg, SLOT(setFrequency(int)));
+    //QObject::connect(&w, SIGNAL(FRQchanged(int)), &fourthDg, SLOT(setFrequency(int)));
     QObject::connect(&w, SIGNAL(delayChangedFourth(int,double)), &fourthDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &fourthDg, SLOT(writeSettings()));
     fourthDg.init(0);

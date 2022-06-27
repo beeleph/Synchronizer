@@ -22,6 +22,10 @@ void Synchronizer::Say(QString text)
 void Synchronizer::on_startButton_toggled(bool checked)
 {
     emit startButtonToggled(checked);
+    if (checked)
+        ui->startButton->setText("Стоп");
+    else
+        ui->startButton->setText("Запуск");
 }
 
 void Synchronizer::on_A1LatencyDoubleSpinBox_valueChanged(double arg1)

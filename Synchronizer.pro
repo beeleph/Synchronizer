@@ -7,8 +7,6 @@
 QT       += core gui \
             network widgets
 
-win32:LIBS += libws2_32
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Synchronizer
@@ -30,10 +28,12 @@ CONFIG += c++11
 SOURCES += \
         dg645.cpp \
         main.cpp \
+        server.cpp \
         synchronizer.cpp
 
 HEADERS += \
         dg645.h \
+        server.h \
         synchronizer.h
 
 FORMS += \

@@ -1,5 +1,6 @@
 #include "dg645.h"
 #include "synchronizer.h"
+#include "server.h"
 //#include <QApplication>
 
 /* Synchronizer v.1.2
@@ -60,6 +61,12 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(delayChangedFourth(int,double)), &fourthDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &fourthDg, SLOT(writeSettings()));
     fourthDg.init(0);
+    server srv;
+    QObject::connect(&srv, SIGNAL(serverSay(QString)), &w, SLOT(Say(QString)));
+    QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &srv, SLOT(statusChanging(bool)));
+    QObject::connect(&w, SIGNAL(FRQchanged(int)), &srv, SLOT(freqChanging(int)));
+    srv.initServer();
+
     w.show();
     return a.exec();
 }

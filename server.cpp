@@ -48,7 +48,10 @@ void server::sendShitBack()
 
 
     QJsonObject jsonObj;
-    jsonObj["frequency"] = frequency;
+    if (!started)
+        jsonObj["frequency"] = 0;
+    else
+        jsonObj["frequency"] = frequency;
     jsonObj["status"] = started;
     QJsonDocument jdman(jsonObj);
     QByteArray jsonData = jdman.toJson(QJsonDocument::Indented);

@@ -42,11 +42,6 @@ void server::statusChanging(bool status){
 
 void server::sendShitBack()
 {
-    QByteArray block;
-    QDataStream out(&block, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_10);
-
-
     QJsonObject jsonObj;
     if (!started)
         jsonObj["frequency"] = 0;
@@ -56,12 +51,11 @@ void server::sendShitBack()
     QJsonDocument jdman(jsonObj);
     QByteArray jsonData = jdman.toJson(QJsonDocument::Indented);
 
-    out << jsonData;
-
     QTcpSocket *clientConnection = tcpServer->nextPendingConnection();
     connect(clientConnection, &QAbstractSocket::disconnected,
             clientConnection, &QObject::deleteLater);
 
-    clientConnection->write(block);
+    clientConnection->write(jsonData);
+    clientConnection->waitForBytesWritten();
     clientConnection->disconnectFromHost();
 }

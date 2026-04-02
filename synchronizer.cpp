@@ -189,7 +189,8 @@ void Synchronizer::on_G4LatencyDoubleSpinBox_valueChanged(double arg1)
     emit delayChangedFourth(6, arg1);
 }
 
-void Synchronizer::on_spinBox_valueChanged(int arg1)
+void Synchronizer::on_frqApplyButton_clicked()
 {
-    emit FRQchanged(arg1);
+    emit FRQchanged((float)ui->doubleSpinBox->value());
 }
+

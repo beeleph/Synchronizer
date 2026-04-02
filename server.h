@@ -21,14 +21,14 @@ signals:
 
 public slots:
     void sendShitBack();
-    void freqChanging(int freq);
+    void freqChanging(float freq);
     void statusChanging(bool status);
 
 private:
 
     QTcpServer *tcpServer = nullptr;
 
-    int frequency;
+    float frequency;
     bool started;
 };
 

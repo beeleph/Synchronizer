@@ -119,9 +119,9 @@ void dg645::setDelayDuration(int chNum, double chDelay){
     this->chDelay[chNum] = chDelay;
     this->chDelay[chNum+1] = chDelay + outputDuration[chNum/2];
 }
-void dg645::setFrequency(int frq){
+void dg645::setFrequency(float frq){
     if (uiStatus){
-        QString write("trat " + QString::number(frq) + "\n");
+        QString write("trat " + QString::number(frq, 'f', 4) + "\n");
         tcpSocket->write(write.toUtf8());
     }
     frequency = frq;

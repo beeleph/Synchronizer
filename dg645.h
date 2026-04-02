@@ -32,7 +32,7 @@ public slots:
     void askStatus();                           // asks INSR? for status
     void setDelay(int chNum, double chDelay);   // means that chDelay in Ms (microsec)
     void setDelayDuration(int chNum, double chDelay);   // sets the output instead of channel with fixed duration readed from ini
-    void setFrequency(int frq);                 // sets frequency? in hz!
+    void setFrequency(float frq);                 // sets frequency? in hz!
     void startStop(bool checked);               // when start button is pressed. we write all da settings including frq, delays, on/off to dg, turn off all da channels when stop button is pressed
     void triggerSwitch(bool internal);          // for extra safety with on/off
 
@@ -46,7 +46,7 @@ private:
     bool uiStatus = false;          // ui status - start button. when UI enabled delays and onOff buttons immediately works with DG. otherwise only "memorize" their settings.
     double chDelay[8];              // channels delays in Ms microseconds.
     double outputDuration[4];           // duration of outputs. for using outputs with fixed ending. i0 - ch1 - outAB, i1 - ch3 - outCD, i2 - ch5 - outEF, i3- ch7 - outGH
-    int frequency = 0;              // dg internal trigger frequency in HZ
+    float frequency = 0;              // dg float trigger frequency in HZ
 
     QVector<QByteArray> V_names{8};
     // yea, basically better to uistatus, frq and setting to be static. but it's more complicated and less convinient for me.

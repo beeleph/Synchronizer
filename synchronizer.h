@@ -20,7 +20,7 @@ public:
 
 signals:
     void startButtonToggled(bool checked);
-    void FRQchanged(int frq);
+    void FRQchanged(float frq);
     void enableToggledFirst(int chNum, bool checked);
     void enableToggledSecond(int chNum, bool checked);
     void delayChangedFirst(int ch,double delayMs);
@@ -81,7 +81,7 @@ private slots:
 
     void on_G4LatencyDoubleSpinBox_valueChanged(double arg1);
 
-    void on_spinBox_valueChanged(int arg1);
+    void on_frqApplyButton_clicked();
 
 private:
     Ui::Synchronizer *ui;

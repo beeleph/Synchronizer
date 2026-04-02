@@ -3,13 +3,13 @@
 #include "server.h"
 //#include <QApplication>
 
-/* Synchronizer v.1.2
+/* Synchronizer v.1.3
  * Чтобы читались названия каналов в ini он должен быть в кодировке UTF-8-BOM
  * ip=...
  * Name1=...
  * Igor Zhironkin
  * isjironn@gmail.com / jironkin@jinr.ru
- * JINR, FLNP 2021
+ * JINR, FLNP 2026
  */
 
 
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     QObject::connect(&firstDg, SIGNAL(dgSay(QString)), &w, SLOT(Say(QString)));
     QObject::connect(&firstDg, SIGNAL(settingsToUi(QVector<bool>, QVector<double>, QVector<QByteArray>)), &w, SLOT(settingsToUiOne(QVector<bool>, QVector<double>, QVector<QByteArray>)));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &firstDg, SLOT(startStop(bool)));
-    QObject::connect(&w, SIGNAL(FRQchanged(int)), &firstDg, SLOT(setFrequency(int)));
+    QObject::connect(&w, SIGNAL(FRQchanged(float)), &firstDg, SLOT(setFrequency(float)));
     QObject::connect(&w, SIGNAL(delayChangedFirst(int,double)), &firstDg, SLOT(setDelayDuration(int,double)));
     QObject::connect(&w, SIGNAL(saveButtonClicked()), &firstDg, SLOT(writeSettings()));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &firstDg, SLOT(triggerSwitch(bool)));
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     server srv;
     QObject::connect(&srv, SIGNAL(serverSay(QString)), &w, SLOT(Say(QString)));
     QObject::connect(&w, SIGNAL(startButtonToggled(bool)), &srv, SLOT(statusChanging(bool)));
-    QObject::connect(&w, SIGNAL(FRQchanged(int)), &srv, SLOT(freqChanging(int)));
+    QObject::connect(&w, SIGNAL(FRQchanged(float)), &srv, SLOT(freqChanging(float)));
     srv.initServer();
 
     w.show();

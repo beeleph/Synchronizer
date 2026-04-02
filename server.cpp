@@ -32,7 +32,7 @@ void server::initServer(){
     connect(tcpServer, &QTcpServer::newConnection, this, &server::sendShitBack);
 }
 
-void server::freqChanging(int freq){
+void server::freqChanging(float freq){
     frequency = freq;
 }
 
